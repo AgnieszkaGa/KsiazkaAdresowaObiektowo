@@ -12,9 +12,11 @@ void KsiazkaAdresowa::rejestracjaUzytkownika()
      uzytkownikMenedzer.wypiszWszystkichUzytkownikow();
  }
 
-/* void KsiazkaAdresowa::logowanieUzytkownika()
+void KsiazkaAdresowa::logowanieUzytkownika()
  {
      uzytkownikMenedzer.logowanieUzytkownika();
+ }
+     /*uzytkownikMenedzer.logowanieUzytkownika();
      po zalogowaniu UzytkownikMenedzer powinien pobrac swoje idZalogowanegoUzytkownika przy pomocy getter
       - czyli trzeba swtworzyc w klasie UzytkownikMenedzer getter dla pola idZalogowanegoUzytkownika
       i przy pomocy settera ustawic je w klasie (i setter dla analogicznego pola idZalogowanegoUzytkownika w klasie AdresatManager)
