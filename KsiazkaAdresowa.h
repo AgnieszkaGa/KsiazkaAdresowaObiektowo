@@ -10,6 +10,7 @@ using namespace std;
 class KsiazkaAdresowa
 {
     UzytkownikMenedzer uzytkownikMenedzer;
+   // AdresatMenedzer adresatMenedzer; - prawidlowe rozwiazanie
 
 public:
     KsiazkaAdresowa(string nazwaPlikuZUzytkownikami) : uzytkownikMenedzer(nazwaPlikuZUzytkownikami) {
@@ -17,5 +18,8 @@ public:
 };
     void rejestracjaUzytkownika();
     void wypiszWszystkichUzytkownikow();
+   // void logowanieUzytkownika();
+
+  // void dodajAdresata();
 };
 #endif
