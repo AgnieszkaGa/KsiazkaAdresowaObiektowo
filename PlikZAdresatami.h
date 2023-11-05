@@ -12,6 +12,7 @@ using namespace std;
 class PlikZAdresatami
 {
     const string nazwaPlikuZAdresatami;
+    //int idOstatniegoAdresata;
 
     bool czyPlikJestPusty();
     string zamienDaneAdrestaNaLinieZDanymiOddzielonaPionowymiKreskami(Adresat adresat);

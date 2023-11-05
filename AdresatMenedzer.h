@@ -30,6 +30,7 @@ class AdresatMenedzer
         }
     };
 
+    int pobierzAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
     void dodajAdresata();
     void wyswietlWszystkichAdresatow();
     void wyszukajAdrastaowPoImieniu();

@@ -11,19 +11,19 @@ using namespace std;
 class KsiazkaAdresowa
 {
     UzytkownikMenedzer uzytkownikMenedzer;
-//    AdresatMenedzer adresatMenedzer;
+    AdresatMenedzer adresatMenedzer;
 
-public:
+/*public:
     KsiazkaAdresowa(string nazwaPlikuZUzytkownikami) : uzytkownikMenedzer(nazwaPlikuZUzytkownikami) {
      uzytkownikMenedzer.wczytajUzytkownikowZPliku();
-   };
+   };*/
 
-//public:
- //   KsiazkaAdresowa(string nazwaPlikuZUzytkownikami, string nazwaPlikuZAdresatami)
-  //  : uzytkownikMenedzer(nazwaPlikuZUzytkownikami), adresatMenedzer(nazwaPlikuZAdresatami)
-  //  {
-  //       uzytkownikMenedzer.wczytajUzytkownikowZPliku();
-//};
+public:
+    KsiazkaAdresowa(string nazwaPlikuZUzytkownikami, string nazwaPlikuZAdresatami)
+   : uzytkownikMenedzer(nazwaPlikuZUzytkownikami), adresatMenedzer(nazwaPlikuZAdresatami)
+   {
+        uzytkownikMenedzer.wczytajUzytkownikowZPliku();
+};
 
 
 

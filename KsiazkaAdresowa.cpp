@@ -14,11 +14,14 @@ void KsiazkaAdresowa::rejestracjaUzytkownika()
 int KsiazkaAdresowa::logowanieUzytkownika()
  {
      int idZalgowanegoUzytkownia = uzytkownikMenedzer.logowanieUzytkownika();
+
      if (idZalgowanegoUzytkownia >0)
         {
          uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika(idZalgowanegoUzytkownia);
         }
- return idZalgowanegoUzytkownia;
+        return idZalgowanegoUzytkownia;
+
+ adresatMenedzer.pobierzAdresatowZalogowanegoUzytkownikaZPliku(int idZalgowanegoUzytkownia);
  }
 
  void KsiazkaAdresowa::wylogowanieUzytkownika()
