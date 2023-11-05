@@ -12,9 +12,14 @@ void KsiazkaAdresowa::rejestracjaUzytkownika()
      uzytkownikMenedzer.wypiszWszystkichUzytkownikow();
  }
 
-void KsiazkaAdresowa::logowanieUzytkownika()
+int KsiazkaAdresowa::logowanieUzytkownika()
  {
-     uzytkownikMenedzer.logowanieUzytkownika();
+     int idZalgowanegoUzytkownia = uzytkownikMenedzer.logowanieUzytkownika();
+     if (idZalgowanegoUzytkownia >0)
+     {uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika(idZalgowanegoUzytkownia);
+    // uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika();
+ }
+ return idZalgowanegoUzytkownia;
  }
      /*uzytkownikMenedzer.logowanieUzytkownika();
      po zalogowaniu UzytkownikMenedzer powinien pobrac swoje idZalogowanegoUzytkownika przy pomocy getter
@@ -30,7 +35,7 @@ void KsiazkaAdresowa::logowanieUzytkownika()
 
  }*/
 
-/* void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika()
+ /*void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika()
  {
      uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika();
  }*/

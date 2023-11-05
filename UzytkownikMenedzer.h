@@ -31,7 +31,7 @@ public:
     int logowanieUzytkownika();
     void wypiszWszystkichUzytkownikow();
     void wczytajUzytkownikowZPliku();
-    void zmianaHaslaZalogowanegoUzytkownika(vector <Uzytkownik> &uzytkownicy,int idZalogowanegoUzytkownika);
+    void zmianaHaslaZalogowanegoUzytkownika(int idZalogowanegoUzytkownika);
     void wylogowanieUzytkownika();
     void czyUzytkownikJestZalgoowany();
    //zmiana na publiczny + int pobierzIdNowegoUzytkownika();

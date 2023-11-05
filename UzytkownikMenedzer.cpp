@@ -99,7 +99,8 @@ int  UzytkownikMenedzer::logowanieUzytkownika()
                 {
                     cout << endl << "Zalogowales sie." << endl << endl;
                     system("pause");
-                    return itr -> pobierzId();
+                    idZalogowanegoUzytkownika = itr -> pobierzId();
+                    return idZalogowanegoUzytkownika;
                 }
             }
             cout << "Wprowadzono 3 razy bledne haslo." << endl;
@@ -114,8 +115,12 @@ int  UzytkownikMenedzer::logowanieUzytkownika()
 }
 
 
-void UzytkownikMenedzer::zmianaHaslaZalogowanegoUzytkownika(vector <Uzytkownik> &uzytkownicy,int idZalogowanegoUzytkownika)
+void UzytkownikMenedzer::zmianaHaslaZalogowanegoUzytkownika(int idZalogowanegoUzytkownika)
 {
+
+     Uzytkownik uzytkownik;
+
+    uzytkownik.ustawId (pobierzIdNowegoUzytkownika());
     string noweHaslo = "";
     cout << "Podaj nowe haslo: ";
     cin >> noweHaslo;// = wczytajLinie();
