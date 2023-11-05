@@ -1,8 +1,10 @@
 #include "KsiazkaAdresowa.h"
+#include "UzytkownikMenedzer.h"
 
 void KsiazkaAdresowa::rejestracjaUzytkownika()
 {
     uzytkownikMenedzer.rejestracjaUzytkownika();
+  //  uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika();
 }
 
  void KsiazkaAdresowa::wypiszWszystkichUzytkownikow()
@@ -26,3 +28,7 @@ void KsiazkaAdresowa::rejestracjaUzytkownika()
 
  }*/
 
+/* void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika()
+ {
+     uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika();
+ }*/

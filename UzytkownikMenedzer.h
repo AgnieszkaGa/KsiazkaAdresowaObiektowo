@@ -16,12 +16,11 @@ class UzytkownikMenedzer
 {
     int idZalogowanegoUzytkownika;
     vector <Uzytkownik> uzytkownicy;
+    PlikZUzytkownikami plikZUzytkownikami;
 
     Uzytkownik podajDaneNowegoUzytkownika();
     int pobierzIdNowegoUzytkownika();
     bool czyIstniejeLogin(string login);
-    PlikZUzytkownikami plikZUzytkownikami;
-
 
 
 public:
@@ -29,7 +28,15 @@ public:
     UzytkownikMenedzer(string nazwaPlikuZUzytkownikami) : plikZUzytkownikami(nazwaPlikuZUzytkownikami){};
 
     void rejestracjaUzytkownika();
+    int logowanieUzytkownika();
     void wypiszWszystkichUzytkownikow();
     void wczytajUzytkownikowZPliku();
+    void zmianaHaslaZalogowanegoUzytkownika(vector <Uzytkownik> &uzytkownicy,int idZalogowanegoUzytkownika);
+    void wylogowanieUzytkownika();
+    void czyUzytkownikJestZalgoowany();
+   //zmiana na publiczny + int pobierzIdNowegoUzytkownika();
+
+
+
 };
 #endif
