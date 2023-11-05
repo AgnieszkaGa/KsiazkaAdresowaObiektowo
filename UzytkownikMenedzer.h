@@ -39,8 +39,8 @@ public:
     void zmianaHaslaZalogowanegoUzytkownika(int idZalogowanegoUzytkownika);
     void wylogowanieUzytkownika();
     bool czyUzytkownikJestZalgoowany();
-    int pobierzIdZalogowanegoUrzytkownika();
-   //zmiana na publiczny + int pobierzIdNowegoUzytkownika();
+
+
 
 
 

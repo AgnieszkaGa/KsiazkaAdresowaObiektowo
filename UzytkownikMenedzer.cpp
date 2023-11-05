@@ -142,6 +142,20 @@ void UzytkownikMenedzer::wylogowanieUzytkownika()
     system("pause");
 }
 
-bool czyUzytkownikJestZalgoowany();
+bool UzytkownikMenedzer::czyUzytkownikJestZalgoowany()
+{
+    if (idZalogowanegoUzytkownika > 0)
+    {
+        cout << "Uzytkownik jest zalogowany " << endl;
+        return true;
+    }
+    else
+    {
+        cout << "Nie jest zalogowany " << endl;
+        return false;
+    }
+
+}
+
 
 
