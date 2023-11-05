@@ -25,7 +25,12 @@ class UzytkownikMenedzer
 
 public:
 
-    UzytkownikMenedzer(string nazwaPlikuZUzytkownikami) : plikZUzytkownikami(nazwaPlikuZUzytkownikami){};
+    UzytkownikMenedzer(string nazwaPlikuZUzytkownikami) : plikZUzytkownikami(nazwaPlikuZUzytkownikami)
+    {
+        {
+            idZalogowanegoUzytkownika = 0;
+        }
+    };
 
     void rejestracjaUzytkownika();
     int logowanieUzytkownika();
@@ -33,7 +38,8 @@ public:
     void wczytajUzytkownikowZPliku();
     void zmianaHaslaZalogowanegoUzytkownika(int idZalogowanegoUzytkownika);
     void wylogowanieUzytkownika();
-    void czyUzytkownikJestZalgoowany();
+    bool czyUzytkownikJestZalgoowany();
+    int pobierzIdZalogowanegoUrzytkownika();
    //zmiana na publiczny + int pobierzIdNowegoUzytkownika();
 
 

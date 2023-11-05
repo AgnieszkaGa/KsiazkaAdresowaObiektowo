@@ -4,7 +4,6 @@
 void KsiazkaAdresowa::rejestracjaUzytkownika()
 {
     uzytkownikMenedzer.rejestracjaUzytkownika();
-  //  uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika();
 }
 
  void KsiazkaAdresowa::wypiszWszystkichUzytkownikow()
@@ -16,11 +15,18 @@ int KsiazkaAdresowa::logowanieUzytkownika()
  {
      int idZalgowanegoUzytkownia = uzytkownikMenedzer.logowanieUzytkownika();
      if (idZalgowanegoUzytkownia >0)
-     {uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika(idZalgowanegoUzytkownia);
-    // uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika();
- }
+        {
+         uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika(idZalgowanegoUzytkownia);
+        }
  return idZalgowanegoUzytkownia;
  }
+
+ void KsiazkaAdresowa::wylogowanieUzytkownika()
+ {
+     uzytkownikMenedzer.wylogowanieUzytkownika();
+ }
+
+
      /*uzytkownikMenedzer.logowanieUzytkownika();
      po zalogowaniu UzytkownikMenedzer powinien pobrac swoje idZalogowanegoUzytkownika przy pomocy getter
       - czyli trzeba swtworzyc w klasie UzytkownikMenedzer getter dla pola idZalogowanegoUzytkownika

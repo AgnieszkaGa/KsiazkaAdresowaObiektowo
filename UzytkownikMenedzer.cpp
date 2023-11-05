@@ -114,16 +114,14 @@ int  UzytkownikMenedzer::logowanieUzytkownika()
     return 0;
 }
 
-
 void UzytkownikMenedzer::zmianaHaslaZalogowanegoUzytkownika(int idZalogowanegoUzytkownika)
 {
-
-     Uzytkownik uzytkownik;
+    Uzytkownik uzytkownik;
 
     uzytkownik.ustawId (pobierzIdNowegoUzytkownika());
     string noweHaslo = "";
     cout << "Podaj nowe haslo: ";
-    cin >> noweHaslo;// = wczytajLinie();
+    cin >> noweHaslo;
 
     for (vector <Uzytkownik>::iterator itr = uzytkownicy.begin(); itr != uzytkownicy.end(); itr++)
     {
@@ -137,5 +135,13 @@ void UzytkownikMenedzer::zmianaHaslaZalogowanegoUzytkownika(int idZalogowanegoUz
     plikZUzytkownikami.zapiszWszystkichUzytkownikowDoPliku(uzytkownicy);
 }
 
+void UzytkownikMenedzer::wylogowanieUzytkownika()
+{
+    idZalogowanegoUzytkownika = 0;
+    cout << " Wylogowano " << endl;
+    system("pause");
+}
+
+bool czyUzytkownikJestZalgoowany();
 
 
