@@ -15,7 +15,9 @@ class AdresatMenedzer
     vector <Adresat> adresaci;
     PlikZAdresatami plikZAdresatami;
 
-    Adresat podajDaneNowegoAdresata();
+
+    Adresat podajDaneNowegoAdresata(int idZalogowanegoUzytkownika, int idOstatniegoAdresata);
+
     void wyswietlDaneAdresata();
     void wyswietlIloscWyszukanychAdresatow();
     int podajIdWybranegoAdresata();
@@ -30,8 +32,13 @@ class AdresatMenedzer
         }
     };
 
-    int pobierzAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
-    void dodajAdresata();
+    void pobierzAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
+    int dodajAdresata();
+
+
+    void dopiszAdresataDoPliku(Adresat adresat);
+    string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
+
     void wyswietlWszystkichAdresatow();
     void wyszukajAdrastaowPoImieniu();
 

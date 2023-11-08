@@ -1,5 +1,6 @@
 #include "KsiazkaAdresowa.h"
 #include "UzytkownikMenedzer.h"
+#include "AdresatMenedzer.h"
 
 void KsiazkaAdresowa::rejestracjaUzytkownika()
 {
@@ -18,21 +19,32 @@ int KsiazkaAdresowa::logowanieUzytkownika()
      if (idZalgowanegoUzytkownia >0)
         {
          uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika(idZalgowanegoUzytkownia);
+         adresatMenedzer.dodajAdresata();
         }
         return idZalgowanegoUzytkownia;
 
- adresatMenedzer.pobierzAdresatowZalogowanegoUzytkownikaZPliku(int idZalgowanegoUzytkownia);
+       // adresatMenedzer.dodajAdresata( int idZalogowanegoUzytkownika);
  }
 
- void KsiazkaAdresowa::wylogowanieUzytkownika()
- {
-     uzytkownikMenedzer.wylogowanieUzytkownika();
- }
+//void KsiazkaAdresowa::dodajAdresata()
+//{
+ //   adresatMenedzer.dodajAdresata(idZalogowanegoUzytkownika);
+//}
+
+//PlikZAdresatami.pobierzZPlikuIdOstatniegoAdresata();
+
+// adresatMenedzer.dodajAdresata(int idZalgowanegoUzytkownia, int idOstatniegoAdresata);
+// }
+
+// void KsiazkaAdresowa::wylogowanieUzytkownika()
+// {
+ //    uzytkownikMenedzer.wylogowanieUzytkownika();
+// }
 
 
      /*uzytkownikMenedzer.logowanieUzytkownika();
-     po zalogowaniu UzytkownikMenedzer powinien pobrac swoje idZalogowanegoUzytkownika przy pomocy getter
-      - czyli trzeba swtworzyc w klasie UzytkownikMenedzer getter dla pola idZalogowanegoUzytkownika
+     po zalogowaniu UzytkownikMenedzer powinien pobrac swoje idZalogowanegoUzytkownika przy pomocy getter +
+      - czyli trzeba swtworzyc w klasie UzytkownikMenedzer getter dla pola idZalogowanegoUzytkownika +
       i przy pomocy settera ustawic je w klasie (i setter dla analogicznego pola idZalogowanegoUzytkownika w klasie AdresatManager)
 
      - w klasie AdresatMenager stworzyc publicznametode pobierzAdresatowZalogowanegoUzytkownikaZPliku() i wywola ja w metodzie lgowanie Uzytkownika
