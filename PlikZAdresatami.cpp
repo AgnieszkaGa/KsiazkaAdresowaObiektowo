@@ -200,5 +200,3 @@ string PlikZAdresatami::pobierzLiczbe(string &tekst, int &pozycjaZnaku)
     }
     return liczba;
 }
-
-

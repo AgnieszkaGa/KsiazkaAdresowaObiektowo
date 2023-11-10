@@ -107,4 +107,3 @@ string AdresatMenedzer::zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst)
     }
     return tekst;
 }
-

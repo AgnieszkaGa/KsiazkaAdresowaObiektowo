@@ -32,7 +32,7 @@ public:
     void zmianaHaslaZalogowanegoUzytkownika();
     int logowanieUzytkownika();
     void wylogowanieUzytkownika();
-    void dodajAdresata();
+    int dodajAdresata(int idZalgowanegoUzytkownia);
 
 
    // void dodajAdresata();
