@@ -1,11 +1,10 @@
 #include <fstream>
 #include "PlikZAdresatami.h"
 #include "MetodyPomocnicze.h"
+#include "AdresatMenedzer.h"
 
+void PlikZAdresatami::dopiszAdresataDoPliku(Adresat adresat) {
 
-
-void PlikZAdresatami::dopiszAdresataDoPliku(Adresat adresat)
-{
     string liniaZDanymiAdresata = "";
     fstream plikTekstowy;
 
@@ -29,8 +28,8 @@ void PlikZAdresatami::dopiszAdresataDoPliku(Adresat adresat)
     plikTekstowy.close();
 }
 
-bool PlikZAdresatami::czyPlikJestPusty()
-{
+bool PlikZAdresatami::czyPlikJestPusty() {
+
     fstream plikTekstowy;
 
     plikTekstowy.seekg(0, ios::end);
@@ -40,15 +39,12 @@ bool PlikZAdresatami::czyPlikJestPusty()
         return false;
 }
 
-string PlikZAdresatami::zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKreskami(Adresat adresat)
-{
+string PlikZAdresatami::zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKreskami(Adresat adresat) {
+
     string liniaZDanymiAdresata = "";
 
-   //czy nie musza byc przeslane jeszcze dane uzytkownika
-    liniaZDanymiAdresata += MetodyPomocnicze::konwerjsaIntNaString(adresat.pobierzId())+ '|';
-    //liniaZDanymiAdresata += uzytkownik.pobierzLogin() + '|';
-   // liniaZDanymiAdresata += uzytkownik.pobierzHaslo() + '|';
-     liniaZDanymiAdresata += adresat.pobierzIdUzytkownika() + '|';
+     liniaZDanymiAdresata += MetodyPomocnicze::konwerjsaIntNaString(adresat.pobierzId())+ '|';
+     liniaZDanymiAdresata += MetodyPomocnicze::konwerjsaIntNaString(adresat.pobierzIdUzytkownika()) + '|';
      liniaZDanymiAdresata += adresat.pobierzImie() + '|';
      liniaZDanymiAdresata += adresat.pobierzNazwisko() + '|';
      liniaZDanymiAdresata += adresat.pobierzNumerTelefonu() + '|';
@@ -58,8 +54,8 @@ string PlikZAdresatami::zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKresk
     return liniaZDanymiAdresata;
 }
 
-vector <Adresat> PlikZAdresatami::wczytajAdresatowZalogowanegoUzytkownikaZPliku()
-{
+vector <Adresat> PlikZAdresatami::wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika){
+
     Adresat adresat;
     vector <Adresat> adresaci;
     string daneJednegoAdresataOddzielonePionowymiKreskami = "";
@@ -71,18 +67,18 @@ vector <Adresat> PlikZAdresatami::wczytajAdresatowZalogowanegoUzytkownikaZPliku(
     {
         while (getline(plikTekstowy, daneJednegoAdresataOddzielonePionowymiKreskami))
         {
-            adresat = pobierzDaneAdresata(daneJednegoAdresataOddzielonePionowymiKreskami);
-            adresaci.push_back(adresat);
+            adresat = pobierzDaneAdresata(daneJednegoAdresataOddzielonePionowymiKreskami, idZalogowanegoUzytkownika);
+             adresaci.push_back(adresat);
         }
-
     }
     plikTekstowy.close();
+
 
     return adresaci;
     }
 
-Adresat PlikZAdresatami::pobierzDaneAdresata(string daneJednegoAdresataOddzielonePionowymiKreskami)
-{
+Adresat PlikZAdresatami::pobierzDaneAdresata(string daneJednegoAdresataOddzielonePionowymiKreskami, int idZalogowanegoUzytkownika) {
+
     Adresat adresat;
     string pojedynczaDanaAdresata = "";
     int numerPojedynczejDanejAdresata = 1;
@@ -101,7 +97,7 @@ Adresat PlikZAdresatami::pobierzDaneAdresata(string daneJednegoAdresataOddzielon
                 adresat.ustawId(atoi(pojedynczaDanaAdresata.c_str()));
                 break;
             case 2:
-                adresat.ustawIdUzytkownika(atoi(pojedynczaDanaAdresata.c_str()));
+               adresat.ustawIdUzytkownika(idZalogowanegoUzytkownika);
                 break;
             case 3:
                 adresat.ustawImie(pojedynczaDanaAdresata);
@@ -126,40 +122,8 @@ Adresat PlikZAdresatami::pobierzDaneAdresata(string daneJednegoAdresataOddzielon
     return adresat;
 }
 
-/*void PlikZAdrestami::zapiszWszystkichUzytkownikowDoPliku(vector <Uzytkownik> &uzytkownicy)
-{
-    fstream plikTekstowy;
-    string liniaZDanymiUzytkownika = "";
-    vector <Uzytkownik>::iterator itrKoniec = --uzytkownicy.end();
+int  PlikZAdresatami::pobierzZPlikuIdOstatniegoAdresata() {
 
-    plikTekstowy.open(nazwaPlikuZUzytkownikami.c_str(), ios::out);
-
-    if (plikTekstowy.good() == true)
-    {
-        for (vector <Uzytkownik>::iterator itr = uzytkownicy.begin(); itr != uzytkownicy.end(); itr++)
-        {
-            liniaZDanymiUzytkownika = zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(*itr);
-
-            if (itr == itrKoniec)
-            {
-               plikTekstowy << liniaZDanymiUzytkownika;
-            }
-            else
-            {
-                plikTekstowy << liniaZDanymiUzytkownika << endl;
-            }
-            liniaZDanymiUzytkownika = "";
-        }
-    }
-    else
-    {
-        cout << "Nie mozna otworzyc pliku " << nazwaPlikuZUzytkownikami << endl;
-    }
-    plikTekstowy.close();
-}*/
-
-int  PlikZAdresatami::pobierzZPlikuIdOstatniegoAdresata()
-{
     int idOstatniegoAdresata = 0;
     string daneJednegoAdresataOddzielonePionowymiKreskami = "";
     string daneOstaniegoAdresataWPliku = "";
@@ -182,16 +146,15 @@ int  PlikZAdresatami::pobierzZPlikuIdOstatniegoAdresata()
     return idOstatniegoAdresata;
 }
 
-int PlikZAdresatami::pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami)
-{
+int PlikZAdresatami::pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami) {
+
     int pozycjaRozpoczeciaIdAdresata = 0;
     int idAdresata = MetodyPomocnicze::konwersjaStringNaInt(pobierzLiczbe(daneJednegoAdresataOddzielonePionowymiKreskami, pozycjaRozpoczeciaIdAdresata));
     return idAdresata;
-    //return 0;
 }
 
-string PlikZAdresatami::pobierzLiczbe(string &tekst, int &pozycjaZnaku)
-{
+string PlikZAdresatami::pobierzLiczbe(string &tekst, int &pozycjaZnaku) {
+
     string liczba = "";
     while(isdigit(tekst[pozycjaZnaku]) == true)
     {
@@ -200,3 +163,5 @@ string PlikZAdresatami::pobierzLiczbe(string &tekst, int &pozycjaZnaku)
     }
     return liczba;
 }
+
+

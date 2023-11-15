@@ -3,26 +3,13 @@
 #include "AdresatMenedzer.h"
 #include "PlikZAdresatami.h"
 
-/*void AdresatMenedzer::pobierzAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika)
-{
-    Adresat adresat;
-    adresaci = plikZAdresatami.wczytajAdresatowZalogowanegoUzytkownikaZPliku();
-    adresaci.clear();
+void AdresatMenedzer::wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika){
 
-    for (const Adresat &adresat : nowiAdresaci)
-    {
-        if (adresat.pobierzIdUzytkownika() == idZalogowanegoUzytkownika)
-        {
-            adresaci.push_back(adresat);
-        }
-    }
-    return adresaci.size
+    adresaci = plikZAdresatami.wczytajAdresatowZalogowanegoUzytkownikaZPliku(idZalogowanegoUzytkownika);
+}
 
-}*/
+int AdresatMenedzer::dodajAdresata(int idZalogowanegoUzytkownika){
 
-
-int AdresatMenedzer::dodajAdresata()
-{
     int idOstatniegoAdresata = plikZAdresatami.pobierzZPlikuIdOstatniegoAdresata();
 
     Adresat adresat;
@@ -33,12 +20,13 @@ int AdresatMenedzer::dodajAdresata()
 
     adresaci.push_back(adresat);
     plikZAdresatami.dopiszAdresataDoPliku(adresat);
+    cout << "Adresat dodany." << endl;
 
     return ++idOstatniegoAdresata;
 }
 
-Adresat AdresatMenedzer::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika, int idOstatniegoAdresata)
-{
+Adresat AdresatMenedzer::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika, int idOstatniegoAdresata){
+
     Adresat adresat;
 
     string imie = "", nazwisko = "", numerTelefonu = "", email  = "", adres = "";
@@ -71,39 +59,42 @@ Adresat AdresatMenedzer::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika, 
     return adresat;
 }
 
-/*Pobierz dane adresata w pliku z Adresatami
-{
-    string liniaZDanymiAdresata = "";
-    fstream plikTekstowy;
-    plikTekstowy.open(nazwaPlikuZAdresatami.c_str(), ios::out | ios::app);
+string AdresatMenedzer::zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst){
 
-    if (plikTekstowy.good() == true)
-    {
-        liniaZDanymiAdresata = zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(adresat);
-
-        if (czyPlikJestPusty(plikTekstowy) == true)
-        {
-            plikTekstowy << liniaZDanymiAdresata;
-        }
-        else
-        {
-            plikTekstowy << endl << liniaZDanymiAdresata ;
-        }
-    }
-    else
-    {
-        cout << "Nie udalo sie otworzyc pliku i zapisac w nim danych." << endl;
-    }
-    plikTekstowy.close();
-    system("pause");
-}*/
-
-string AdresatMenedzer::zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst)
-{
     if (!tekst.empty())
     {
         transform(tekst.begin(), tekst.end(), tekst.begin(), ::tolower);
         tekst[0] = toupper(tekst[0]);
     }
     return tekst;
+}
+
+void AdresatMenedzer::wyswietlDaneAdresata(Adresat adresat){
+
+    cout << endl << "Id:         " << adresat.pobierzId() << endl;
+    cout << "Imie:               " << adresat.pobierzImie() << endl;
+    cout << "Nazwisko:           " << adresat.pobierzNazwisko() << endl;
+    cout << "Numer telefonu:     " << adresat.pobierzNumerTelefonu() << endl;
+    cout << "Email:              " << adresat.pobierzEmail() << endl;
+    cout << "Adres:              " << adresat.pobierzAdres() << endl;
+}
+
+void AdresatMenedzer::wyswietlWszystkichAdresatow() {
+
+    system("cls");
+    if (!adresaci.empty())
+    {
+        cout << "             >>> ADRESACI <<<" << endl;
+        cout << "-----------------------------------------------" << endl;
+        for (vector <Adresat> :: iterator itr = adresaci.begin(); itr != adresaci.end(); itr++)
+        {
+            wyswietlDaneAdresata(*itr);
+        }
+        cout << endl;
+    }
+    else
+    {
+        cout << endl << "Ksiazka adresowa jest pusta." << endl << endl;
+    }
+    system("pause");
 }

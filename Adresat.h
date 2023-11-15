@@ -33,4 +33,4 @@ public:
     string pobierzEmail();
     string pobierzAdres();
  };
- #endif // UZYTKOWNIK_H
+ #endif
