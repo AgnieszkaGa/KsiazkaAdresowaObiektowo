@@ -1,6 +1,7 @@
 #include "KsiazkaAdresowa.h"
 #include "UzytkownikMenedzer.h"
 #include "AdresatMenedzer.h"
+#include "Uzytkownik.h"
 
 
 void KsiazkaAdresowa::rejestracjaUzytkownika(){
@@ -15,28 +16,31 @@ int KsiazkaAdresowa::logowanieUzytkownika() {
 
      int idZalogowanegoUzytkownika = uzytkownikMenedzer.logowanieUzytkownika();
 
-if (idZalogowanegoUzytkownika != 0) {
-        adresatMenedzer.wczytajAdresatowZalogowanegoUzytkownikaZPliku(idZalogowanegoUzytkownika);
-        menuUzytkownika(idZalogowanegoUzytkownika);  // Przekazujemy idZalogowanegoUzytkownika do menu
+     if (idZalogowanegoUzytkownika <= 0)
+     {
+         cout << "Blad logowania" << endl;
+         system("pause");
+         return 0;
     }
+
+    Uzytkownik uzytkownik;
+    //uzytkownik.ustawId(idZalogowanegoUzytkownika);
+    adresatMenedzer.ustawIdZalogowanegoUzytkownika(idZalogowanegoUzytkownika);
+    adresatMenedzer.wczytajAdresatowZalogowanegoUzytkownikaZPliku();
+    menuUzytkownika();
     return idZalogowanegoUzytkownika;
- }
+    }
 
-void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika() {
-
+void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika(){
  uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika();
  }
 
-int KsiazkaAdresowa::dodajAdresata(int idZalogowanegoUzytkownika){
+void KsiazkaAdresowa::dodajAdresata(){
 
-uzytkownikMenedzer.czyUzytkownikJestZalogowany();  //uzytkownikMenedzer.czyUzytkownikJestZalgoowany();
-
-if (idZalogowanegoUzytkownika != 0)
+if (uzytkownikMenedzer.czyUzytkownikJestZalogowany())
      {
-     return adresatMenedzer.dodajAdresata(idZalogowanegoUzytkownika);
+      adresatMenedzer.dodajAdresata();
      }
-
-return adresatMenedzer.dodajAdresata(idZalogowanegoUzytkownika);
 }
 
 void KsiazkaAdresowa::wyswietlWszystkichAdresatow(){
@@ -85,7 +89,7 @@ char KsiazkaAdresowa::wybierzOpcjeZMenuUzytkownika() {
     return wybor;
 }
 
-void KsiazkaAdresowa::menuUzytkownika(int idZalogowanegoUzytkownika) {
+void KsiazkaAdresowa::menuUzytkownika() {
 
     char wybor;
 
@@ -94,7 +98,7 @@ void KsiazkaAdresowa::menuUzytkownika(int idZalogowanegoUzytkownika) {
 
         switch (wybor) {
             case '1':
-                dodajAdresata(idZalogowanegoUzytkownika);
+                dodajAdresata();
                 break;
             /*case '2':
                 wyszukajPoImieniu();

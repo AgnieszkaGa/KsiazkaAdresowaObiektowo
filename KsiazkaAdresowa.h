@@ -5,6 +5,7 @@
 
 #include "UzytkownikMenedzer.h"
 #include "AdresatMenedzer.h"
+#include "Uzytkownik.h"
 
 using namespace std;
 
@@ -12,6 +13,18 @@ class KsiazkaAdresowa
 {
     UzytkownikMenedzer uzytkownikMenedzer;
     AdresatMenedzer adresatMenedzer;
+    void rejestracjaUzytkownika();
+    void wypiszWszystkichUzytkownikow();
+    int logowanieUzytkownika();
+
+    void zmianaHaslaZalogowanegoUzytkownika();
+    void dodajAdresata();
+    void wyswietlWszystkichAdresatow();
+
+    char wybierzOpcjeZMenuGlownego();
+    char wybierzOpcjeZMenuUzytkownika();
+    void menuUzytkownika();
+    int pobierzId();
 
 public:
     KsiazkaAdresowa(string nazwaPlikuZUzytkownikami, string nazwaPlikuZAdresatami)
@@ -19,18 +32,9 @@ public:
    {
         uzytkownikMenedzer.wczytajUzytkownikowZPliku();
 };
-    void rejestracjaUzytkownika();
-    void wypiszWszystkichUzytkownikow();
-    int logowanieUzytkownika();
 
-    void zmianaHaslaZalogowanegoUzytkownika();
-    int dodajAdresata(int idZalogowanegoUzytkownika);
-    void wyswietlWszystkichAdresatow();
+void menuGlowne();
 
-    char wybierzOpcjeZMenuGlownego();
-    char wybierzOpcjeZMenuUzytkownika();
-    void menuGlowne();
-    void menuUzytkownika(int idZalogowanegoUzytkownika);
  };
 
 #endif

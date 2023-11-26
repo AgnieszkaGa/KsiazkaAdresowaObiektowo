@@ -2,6 +2,7 @@
 #include "PlikZAdresatami.h"
 #include "MetodyPomocnicze.h"
 #include "AdresatMenedzer.h"
+#include "Adresat.h"
 
 void PlikZAdresatami::dopiszAdresataDoPliku(Adresat adresat) {
 
@@ -22,6 +23,7 @@ void PlikZAdresatami::dopiszAdresataDoPliku(Adresat adresat) {
         {
             plikTekstowy << endl << liniaZDanymiAdresata ;
         }
+        idOstatniegoAdresata = getIdOstatniegoAdresata();
     }
     else
         cout << "Nie udalo sie otworzyc pliku " << nazwaPlikuZAdresatami << " i zapisac w nim danych." << endl;
@@ -67,17 +69,22 @@ vector <Adresat> PlikZAdresatami::wczytajAdresatowZalogowanegoUzytkownikaZPliku(
     {
         while (getline(plikTekstowy, daneJednegoAdresataOddzielonePionowymiKreskami))
         {
-            adresat = pobierzDaneAdresata(daneJednegoAdresataOddzielonePionowymiKreskami, idZalogowanegoUzytkownika);
-             adresaci.push_back(adresat);
-        }
+            adresat = pobierzDaneAdresata(daneJednegoAdresataOddzielonePionowymiKreskami);
+             if (adresat.pobierzIdUzytkownika() == idZalogowanegoUzytkownika)
+             {
+                 adresaci.push_back(adresat);
+                 }
     }
     plikTekstowy.close();
+    }
+    idOstatniegoAdresata = pobierzZPlikuIdOstatniegoAdresata();
+    //cout << "idOstatniegoAdresata" << idOstatniegoAdresata << endl;
 
 
     return adresaci;
     }
 
-Adresat PlikZAdresatami::pobierzDaneAdresata(string daneJednegoAdresataOddzielonePionowymiKreskami, int idZalogowanegoUzytkownika) {
+Adresat PlikZAdresatami::pobierzDaneAdresata(string daneJednegoAdresataOddzielonePionowymiKreskami) {
 
     Adresat adresat;
     string pojedynczaDanaAdresata = "";
@@ -97,7 +104,7 @@ Adresat PlikZAdresatami::pobierzDaneAdresata(string daneJednegoAdresataOddzielon
                 adresat.ustawId(atoi(pojedynczaDanaAdresata.c_str()));
                 break;
             case 2:
-               adresat.ustawIdUzytkownika(idZalogowanegoUzytkownika);
+               adresat.ustawIdUzytkownika(atoi(pojedynczaDanaAdresata.c_str()));
                 break;
             case 3:
                 adresat.ustawImie(pojedynczaDanaAdresata);
@@ -124,7 +131,7 @@ Adresat PlikZAdresatami::pobierzDaneAdresata(string daneJednegoAdresataOddzielon
 
 int  PlikZAdresatami::pobierzZPlikuIdOstatniegoAdresata() {
 
-    int idOstatniegoAdresata = 0;
+   // int idOstatniegoAdresata = 0;
     string daneJednegoAdresataOddzielonePionowymiKreskami = "";
     string daneOstaniegoAdresataWPliku = "";
     fstream plikTekstowy;
@@ -143,7 +150,7 @@ int  PlikZAdresatami::pobierzZPlikuIdOstatniegoAdresata() {
     {
         idOstatniegoAdresata = pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(daneOstaniegoAdresataWPliku);
     }
-    return idOstatniegoAdresata;
+    return getIdOstatniegoAdresata();
 }
 
 int PlikZAdresatami::pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami) {

@@ -24,6 +24,7 @@ class UzytkownikMenedzer
     int pobierzIdNowegoUzytkownika();
     bool czyIstniejeLogin(string login);
 
+
 public:
 
     UzytkownikMenedzer(string nazwaPlikuZUzytkownikami) : plikZUzytkownikami(nazwaPlikuZUzytkownikami)
@@ -41,6 +42,7 @@ public:
     void wylogowanieUzytkownika();
     bool czyUzytkownikJestZalogowany();
     int dodajAdresata();
+    int pobierzId();
 
 };
 #endif

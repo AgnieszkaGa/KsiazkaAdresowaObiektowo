@@ -1,5 +1,7 @@
 #include "UzytkownikMenedzer.h"
 #include "PlikZUzytkownikami.h"
+#include "Uzytkownik.h"
+
 
 void UzytkownikMenedzer::rejestracjaUzytkownika() {
 
@@ -34,8 +36,6 @@ Uzytkownik UzytkownikMenedzer::podajDaneNowegoUzytkownika() {
     cin >> haslo;
     uzytkownik.ustawHaslo(haslo);
 
-
-
     return uzytkownik;
 }
 
@@ -61,13 +61,25 @@ bool UzytkownikMenedzer::czyIstniejeLogin(string login) {
     return false;
 }
 
+int UzytkownikMenedzer::pobierzId(){
+
+    if (czyUzytkownikJestZalogowany())
+    {
+        return idZalogowanegoUzytkownika;
+        cout << "Pokaz id zalogowanegouzytkownika w Uzytkownikamenedzer :: " << idZalogowanegoUzytkownika << endl;
+    }
+    else { cout << "Brak zalogowanego uzytkownika" << endl;
+    return 0;
+    }
+}
+
 void UzytkownikMenedzer::wypiszWszystkichUzytkownikow() {
 
     for (size_t i = 0; i < uzytkownicy.size(); i++)
     {
-          cout << uzytkownicy[i].pobierzId() << endl;
-          cout << uzytkownicy[i].pobierzLogin() << endl;
-          cout << uzytkownicy[i].pobierzHaslo() << endl;
+          cout << " Id uzytkownika " << uzytkownicy[i].pobierzId() << endl;
+          cout << " Login uzytkownika " << uzytkownicy[i].pobierzLogin() << endl;
+          cout << " Haslo uzytkownika " << uzytkownicy[i].pobierzHaslo() << endl << endl;
     }
     system("pause");
 }
@@ -103,6 +115,7 @@ int  UzytkownikMenedzer::logowanieUzytkownika() {
                     return idZalogowanegoUzytkownika;
                 }
             }
+
             cout << "Wprowadzono 3 razy bledne haslo." << endl;
             system("pause");
             return 0;
